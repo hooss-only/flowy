@@ -1,4 +1,3 @@
-import 'package:flowy/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
