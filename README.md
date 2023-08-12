@@ -1,4 +1,4 @@
-# flowy &middot; [![GPL3.0](https://img.shields.io/badge/license-GPL3.0-blue.svg)](https://github.com/hooss-only/flowy/main/LICENSE)
+# flowy &middot; [![GPL3.0](https://img.shields.io/badge/license-GPL3.0-blue.svg)](https://github.com/hooss-only/flowy/blob/main/LICENSE)
 
 "A new project for KNUHS"
 
