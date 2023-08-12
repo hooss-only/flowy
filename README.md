@@ -1,16 +1,13 @@
-# flowy
+# flowy &middot; [![GPL3.0](https://img.shields.io/badge/license-GPL3.0-blue.svg)](https://github.com/hooss-only/flowy/main/LICENSE)
 
-"A new Flutter project."
+"A new project for KNUHS"
 
-## Getting Started
+## What it is?
 
-This project is a starting point for a Flutter application.
+이 앱은 경북대학교사범대학부설고등학교를 위한 편리성 앱 입니다.
 
-A few resources to get you started if this is your first Flutter project:
+## What you used?
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+이 프로젝트를 만드는 데에는 다음과 같은 것들이 사용되었습니다.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-   flutter
