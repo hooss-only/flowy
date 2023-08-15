@@ -1,3 +1,4 @@
+import 'package:flowy/screens/main_screen.dart';
 import 'package:flowy/widgets/gradient_elevated_button.dart';
 import 'package:flowy/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
@@ -94,8 +95,7 @@ class _Signup2ScreenState extends State<Signup2Screen> {
                   Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const Placeholder()),
+                    MaterialPageRoute(builder: (context) => const MainScreen()),
                   );
                 }
               },
