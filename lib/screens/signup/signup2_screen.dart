@@ -1,9 +1,30 @@
+import 'package:flowy/screens/splash_screen.dart';
 import 'package:flowy/widgets/gradient_elevated_button.dart';
 import 'package:flowy/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Signup2Screen extends StatelessWidget {
+class Signup2Screen extends StatefulWidget {
   const Signup2Screen({super.key});
+
+  @override
+  State<Signup2Screen> createState() => _Signup2ScreenState();
+}
+
+class _Signup2ScreenState extends State<Signup2Screen> {
+  late SharedPreferences preferences;
+  final nicknameController = TextEditingController();
+
+  Future<void> initPref() async {
+    preferences = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    initPref();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +54,16 @@ class Signup2Screen extends StatelessWidget {
             const SizedBox(
               height: 118,
             ),
-            const SizedBox(
+            SizedBox(
               width: 320,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 169,
                   ),
                   TextField(
-                    decoration: InputDecoration(
+                    controller: nicknameController,
+                    decoration: const InputDecoration(
                       labelText: '닉네임',
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -56,7 +78,7 @@ class Signup2Screen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 169,
                   ),
                 ],
@@ -66,7 +88,18 @@ class Signup2Screen extends StatelessWidget {
               height: 118,
             ),
             GradientElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (nicknameController.text.isNotEmpty) {
+                  preferences.setString("username", nicknameController.text);
+                  preferences.setBool("sign up", true);
+                  Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Placeholder()),
+                  );
+                }
+              },
               gradient: const LinearGradient(
                 colors: [
                   Color(0xFF58BC46),
