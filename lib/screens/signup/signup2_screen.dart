@@ -1,4 +1,3 @@
-import 'package:flowy/screens/splash_screen.dart';
 import 'package:flowy/widgets/gradient_elevated_button.dart';
 import 'package:flowy/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
