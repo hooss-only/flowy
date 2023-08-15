@@ -40,7 +40,17 @@ class Signup1Screen extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                       labelText: '학년',
-                      fillColor: Color(0xFF58BC46),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xFFBBD66C),
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xFF58BC46),
+                          width: 2,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -49,6 +59,17 @@ class Signup1Screen extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                       labelText: '반',
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xFFBBD66C),
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xFF58BC46),
+                          width: 2,
+                        ),
+                      ),
                     ),
                   ),
                 ],
