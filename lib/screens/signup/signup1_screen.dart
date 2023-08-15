@@ -1,9 +1,23 @@
 import 'package:flowy/widgets/gradient_elevated_button.dart';
 import 'package:flowy/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Signup1Screen extends StatelessWidget {
+class Signup1Screen extends StatefulWidget {
   const Signup1Screen({super.key});
+
+  @override
+  State<Signup1Screen> createState() => _Signup1ScreenState();
+}
+
+class _Signup1ScreenState extends State<Signup1Screen> {
+  late SharedPreferences preferences;
+  final gradeController = TextEditingController();
+  final classController = TextEditingController();
+
+  Future<void> initPrefs() async {
+    preferences = await SharedPreferences.getInstance();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +93,17 @@ class Signup1Screen extends StatelessWidget {
               height: 118,
             ),
             GradientElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (gradeController.text.isNotEmpty &&
+                    classController.text.isNotEmpty) {
+                  preferences.setString('grade', gradeController.text);
+                  preferences.setString('class', classController.text);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("학년 / 반을 모두 기입하여주세요."),
+                  ));
+                }
+              },
               gradient: const LinearGradient(
                 colors: [
                   Color(0xFF58BC46),
