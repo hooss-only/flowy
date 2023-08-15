@@ -1,3 +1,4 @@
+import 'package:flowy/screens/signup/signup2_screen.dart';
 import 'package:flowy/widgets/gradient_elevated_button.dart';
 import 'package:flowy/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,12 @@ class _Signup1ScreenState extends State<Signup1Screen> {
 
   Future<void> initPrefs() async {
     preferences = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initPrefs();
   }
 
   @override
@@ -47,12 +54,13 @@ class _Signup1ScreenState extends State<Signup1Screen> {
             const SizedBox(
               height: 118,
             ),
-            const SizedBox(
+            SizedBox(
               width: 320,
               child: Column(
                 children: [
                   TextField(
-                    decoration: InputDecoration(
+                    controller: classController,
+                    decoration: const InputDecoration(
                       labelText: '학년',
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -67,11 +75,12 @@ class _Signup1ScreenState extends State<Signup1Screen> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 68,
                   ),
                   TextField(
-                    decoration: InputDecoration(
+                    controller: gradeController,
+                    decoration: const InputDecoration(
                       labelText: '반',
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -94,10 +103,17 @@ class _Signup1ScreenState extends State<Signup1Screen> {
             ),
             GradientElevatedButton(
               onPressed: () {
-                if (gradeController.text.isNotEmpty &&
+                if (gradeController.text.isNotEmpty ||
                     classController.text.isNotEmpty) {
                   preferences.setString('grade', gradeController.text);
                   preferences.setString('class', classController.text);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => (const Signup2Screen()),
+                      fullscreenDialog: true,
+                    ),
+                  );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("학년 / 반을 모두 기입하여주세요."),
