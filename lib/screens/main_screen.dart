@@ -1,3 +1,5 @@
+import 'package:flowy/models/meal_model.dart';
+import 'package:flowy/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,6 +15,8 @@ class _MainScreenState extends State<MainScreen> {
   String? username = 'XX';
   String? classnumber = '2';
   String? grade = '1';
+
+  late Future<MealModel> todayMeal;
 
   Future<void> initPref() async {
     preferences = await SharedPreferences.getInstance();
@@ -33,6 +37,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+
+    todayMeal = ApiService.getTodayMeal();
 
     initPref();
   }
@@ -63,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
               ],
             ),
             const SizedBox(
-              height: 77,
+              height: 45,
             ),
             Container(
               padding: const EdgeInsets.all(30),
@@ -78,31 +84,75 @@ class _MainScreenState extends State<MainScreen> {
                 ],
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: const Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        '점심',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontFamily: 'Pretendard',
-                          fontWeight: FontWeight.w700,
+              child: FutureBuilder(
+                future: todayMeal,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final date = snapshot.data!.date;
+                    // 20230823 -> 2023. 08. 23.
+                    final dateText =
+                        '${date.substring(0, 4)}. ${date.substring(4, 6)}. ${date.substring(6)}.';
+
+                    final meal = snapshot.data!.meals;
+                    final mealText = meal.replaceAll('<br/>', '\n');
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const Text(
+                              '점심',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontFamily: 'Pretendard',
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                            Text(
+                              dateText,
+                              style: const TextStyle(
+                                  fontFamily: 'Pretendard',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xFF9a9a9a)),
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        '2023. 08. 23.',
-                        style: TextStyle(
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        Text(
+                          mealText,
+                          style: const TextStyle(
                             fontFamily: 'Pretendard',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF9a9a9a)),
+                            fontSize: 20,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          snapshot.data!.calories,
+                          style: const TextStyle(
+                            fontFamily: 'Pretendard',
+                            fontSize: 14,
+                            color: Color(0xff9a9a9a),
+                          ),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return const Center(
+                      child: Text(
+                        '...',
+                        style: TextStyle(fontFamily: 'Pretendard'),
                       ),
-                    ],
-                  )
-                ],
+                    );
+                  }
+                },
               ),
             )
           ],
