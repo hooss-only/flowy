@@ -1,3 +1,4 @@
+import 'package:flowy/screens/main_screen.dart';
 import 'package:flowy/screens/signup/signup1_screen.dart';
 import 'package:flowy/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
@@ -36,17 +37,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
       if (!preferences.containsKey('sign up')) {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => (const Signup1Screen())));
+            MaterialPageRoute(builder: (context) => const Signup1Screen()));
       }
 
       if (signup != null) {
         if (!signup) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => (const Signup1Screen())));
+              MaterialPageRoute(builder: (context) => const Signup1Screen()));
+        } else {
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => const MainScreen()));
+          runApp(const MaterialApp(home: MainScreen()));
         }
       } else {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => (const Signup1Screen())));
+            MaterialPageRoute(builder: (context) => const Signup1Screen()));
       }
 
       Navigator.pop(context);

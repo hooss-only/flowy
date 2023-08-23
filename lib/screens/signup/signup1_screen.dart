@@ -59,7 +59,7 @@ class _Signup1ScreenState extends State<Signup1Screen> {
               child: Column(
                 children: [
                   TextField(
-                    controller: classController,
+                    controller: gradeController,
                     cursorColor: Colors.grey,
                     decoration: const InputDecoration(
                       labelText: '학년',
@@ -80,7 +80,7 @@ class _Signup1ScreenState extends State<Signup1Screen> {
                     height: 68,
                   ),
                   TextField(
-                    controller: gradeController,
+                    controller: classController,
                     cursorColor: Colors.grey,
                     decoration: const InputDecoration(
                       labelText: '반',
