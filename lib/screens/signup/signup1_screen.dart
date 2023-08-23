@@ -60,6 +60,7 @@ class _Signup1ScreenState extends State<Signup1Screen> {
                 children: [
                   TextField(
                     controller: classController,
+                    cursorColor: Colors.grey,
                     decoration: const InputDecoration(
                       labelText: '학년',
                       enabledBorder: UnderlineInputBorder(
@@ -80,6 +81,7 @@ class _Signup1ScreenState extends State<Signup1Screen> {
                   ),
                   TextField(
                     controller: gradeController,
+                    cursorColor: Colors.grey,
                     decoration: const InputDecoration(
                       labelText: '반',
                       enabledBorder: UnderlineInputBorder(

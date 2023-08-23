@@ -63,6 +63,7 @@ class _Signup2ScreenState extends State<Signup2Screen> {
                   ),
                   TextField(
                     controller: nicknameController,
+                    cursorColor: Colors.grey,
                     decoration: const InputDecoration(
                       labelText: '닉네임',
                       enabledBorder: UnderlineInputBorder(
