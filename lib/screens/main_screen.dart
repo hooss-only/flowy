@@ -72,76 +72,111 @@ class _MainScreenState extends State<MainScreen> {
             const SizedBox(
               height: 45,
             ),
-            CardWidget(
-              child: FutureBuilder(
-                future: todayMeal,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final date = snapshot.data!.date;
-                    // 20230823 -> 2023. 08. 23.
-                    final dateText =
-                        '${date.substring(0, 4)}. ${date.substring(4, 6)}. ${date.substring(6)}.';
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  CardWidget(
+                    child: FutureBuilder(
+                      future: todayMeal,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final date = snapshot.data!.date;
+                          // 20230823 -> 2023. 08. 23.
+                          final dateText =
+                              '${date.substring(0, 4)}. ${date.substring(4, 6)}. ${date.substring(6)}.';
 
-                    final meal = snapshot.data!.meals;
-                    final mealText = meal.replaceAll('<br/>', '\n');
+                          final meal = snapshot.data!.meals;
+                          final mealText = meal.replaceAll('<br/>', '\n');
 
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            const Text(
-                              '점심',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontFamily: 'Pretendard',
-                                fontWeight: FontWeight.w700,
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Text(
+                                    '점심',
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontFamily: 'Pretendard',
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Text(
+                                    dateText,
+                                    style: const TextStyle(
+                                        fontFamily: 'Pretendard',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color(0xFF9a9a9a)),
+                                  ),
+                                ],
                               ),
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              dateText,
-                              style: const TextStyle(
+                              const SizedBox(
+                                height: 25,
+                              ),
+                              Text(
+                                mealText,
+                                style: const TextStyle(
                                   fontFamily: 'Pretendard',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFF9a9a9a)),
+                                  fontSize: 18,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                snapshot.data!.calories,
+                                style: const TextStyle(
+                                  fontFamily: 'Pretendard',
+                                  fontSize: 14,
+                                  color: Color(0xff9a9a9a),
+                                ),
+                              ),
+                            ],
+                          );
+                        } else {
+                          return const Center(
+                            child: Text(
+                              '...',
+                              style: TextStyle(fontFamily: 'Pretendard'),
                             ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        Text(
-                          mealText,
-                          style: const TextStyle(
-                            fontFamily: 'Pretendard',
-                            fontSize: 18,
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  CardWidget(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "X요일 시간표",
+                          style: TextStyle(
+                            fontFamily: "Pretendard",
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          snapshot.data!.calories,
-                          style: const TextStyle(
-                            fontFamily: 'Pretendard',
-                            fontSize: 14,
-                            color: Color(0xff9a9a9a),
+                        GestureDetector(
+                          onTap: () {},
+                          child: const Text(
+                            "바로가기 >",
+                            style: TextStyle(
+                              color: Color(0xFF5EA9FF),
+                              fontFamily: "Pretendard",
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
+                        )
                       ],
-                    );
-                  } else {
-                    return const Center(
-                      child: Text(
-                        '...',
-                        style: TextStyle(fontFamily: 'Pretendard'),
-                      ),
-                    );
-                  }
-                },
+                    ),
+                  ),
+                ],
               ),
             )
           ],
