@@ -1,5 +1,6 @@
 import 'package:flowy/models/meal_model.dart';
 import 'package:flowy/services/api_services.dart';
+import 'package:flowy/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,19 +72,7 @@ class _MainScreenState extends State<MainScreen> {
             const SizedBox(
               height: 45,
             ),
-            Container(
-              padding: const EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 6,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(25),
-              ),
+            CardWidget(
               child: FutureBuilder(
                 future: todayMeal,
                 builder: (context, snapshot) {
@@ -128,7 +117,7 @@ class _MainScreenState extends State<MainScreen> {
                           mealText,
                           style: const TextStyle(
                             fontFamily: 'Pretendard',
-                            fontSize: 20,
+                            fontSize: 18,
                           ),
                         ),
                         const SizedBox(

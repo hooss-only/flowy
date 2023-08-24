@@ -47,7 +47,10 @@ class _SplashScreenState extends State<SplashScreen> {
         } else {
           // Navigator.push(context,
           //     MaterialPageRoute(builder: (context) => const MainScreen()));
-          runApp(const MaterialApp(home: MainScreen()));
+          runApp(const MaterialApp(
+            home: MainScreen(),
+            debugShowCheckedModeBanner: false,
+          ));
         }
       } else {
         Navigator.push(context,
