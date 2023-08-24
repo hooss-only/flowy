@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flowy/services/utilites.dart';
 import 'package:http/http.dart' as http;
 import 'package:flowy/models/meal_model.dart';
 import 'package:flowy/services/keys.dart';
@@ -9,7 +10,7 @@ class ApiService {
   static const String key = Keys.neisKey;
 
   static Future<MealModel> getTodayMeal() async {
-    const today = '20230823';
+    final today = Utilites.getToday();
     final url = Uri.parse(
         '${baseURL}mealServiceDietInfo/?KEY=$key&Type=json&ATPT_OFCDC_SC_CODE=D10&SD_SCHUL_CODE=7004180&MLSV_YMD=$today');
 
