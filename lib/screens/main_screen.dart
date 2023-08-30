@@ -1,5 +1,7 @@
 import 'package:flowy/models/meal_model.dart';
+import 'package:flowy/screens/timetable_screen.dart';
 import 'package:flowy/services/api_services.dart';
+import 'package:flowy/services/utilites.dart';
 import 'package:flowy/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,6 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   String? username = 'XX';
   String? classnumber = '2';
   String? grade = '1';
+  String? weekday = 'X';
 
   late Future<MealModel> todayMeal;
 
@@ -40,6 +43,7 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
 
     todayMeal = ApiService.getTodayMeal();
+    weekday = Utilites.getTodayWeekday();
 
     initPref();
   }
@@ -154,16 +158,25 @@ class _MainScreenState extends State<MainScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "X요일 시간표",
-                          style: TextStyle(
+                        Text(
+                          "$weekday요일 시간표",
+                          style: const TextStyle(
                             fontFamily: "Pretendard",
                             fontSize: 24,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => TimetableScreen(
+                                    grade: grade!, classname: classnumber!),
+                                fullscreenDialog: true,
+                              ),
+                            );
+                          },
                           child: const Text(
                             "바로가기 >",
                             style: TextStyle(
