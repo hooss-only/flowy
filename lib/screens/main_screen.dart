@@ -43,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
 
     todayMeal = ApiService.getTodayMeal();
-    weekday = Utilites.getTodayWeekday();
+    weekday = Utilites.getTodayWeekday('ko_KR');
 
     initPref();
   }

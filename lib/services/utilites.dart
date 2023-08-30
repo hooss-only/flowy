@@ -15,12 +15,14 @@ class Utilites {
   /*
   it returns today's weekday
   eg) Friday -> 금
+
+  it needs locale likes 'ko_KR'
   */
-  static String getTodayWeekday() {
+  static String getTodayWeekday(String locale) {
     initializeDateFormatting();
 
     DateTime now = DateTime.now();
-    DateFormat formatter = DateFormat.E('ko_KR');
+    DateFormat formatter = DateFormat.E(locale);
     return formatter.format(now);
   }
 }
