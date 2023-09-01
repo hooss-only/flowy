@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flowy/models/class_model.dart';
 import 'package:flowy/services/utilites.dart';
 import 'package:http/http.dart' as http;
 import 'package:flowy/models/meal_model.dart';
@@ -30,5 +31,27 @@ class ApiService {
     }
   }
 
-  static Future
+  static Future<List<ClassModel>> getTodayClass(
+      String grade, String classname) async {
+    final weekday = Utilites.getTodayWeekday('en_US').toLowerCase();
+
+    final url = Uri.parse(
+        'https://raw.githubusercontent.com/hooss-only/flowy-data/master/$grade-$classname.json');
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      List<ClassModel> timetable = [];
+
+      final timetableJson = jsonDecode(response.body)[weekday];
+
+      for (final lesson in timetableJson) {
+        timetable.add(ClassModel.fromJson(lesson));
+      }
+
+      return timetable;
+    } else {
+      throw Error();
+    }
+  }
 }
