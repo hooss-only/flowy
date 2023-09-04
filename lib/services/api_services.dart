@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flowy/models/class_model.dart';
+import 'package:flowy/models/weather_model.dart';
 import 'package:flowy/services/utilites.dart';
 import 'package:http/http.dart' as http;
 import 'package:flowy/models/meal_model.dart';
@@ -53,5 +54,22 @@ class ApiService {
     } else {
       throw Error();
     }
-  }
+	}
+	
+	static Future<WeatherModel> getWeather() async {
+		const language = 'kr';
+		const units = 'metric';
+		const city = 'daegu';
+
+		final url = Uri.parse('https://api.openweathermap.org/data/2.5/weather?q=$city&appid=${Keys.weatherKey}&lang=$language&units=$units');
+
+		final response = await http.get(url);
+
+		if (response.statusCode == 200) {
+			final weather = jsonDecode(response.body);
+
+			return WeatherModel.fromJson(weather);
+		} else {
+			throw Error();
+	}
 }
