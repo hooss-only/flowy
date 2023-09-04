@@ -143,7 +143,7 @@ class _MainScreenState extends State<MainScreen> {
                         } else {
                           return const Center(
                             child: Text(
-                              '...',
+                              '나이스 API로부터 불러오는 중...',
                               style: TextStyle(fontFamily: 'Pretendard'),
                             ),
                           );
