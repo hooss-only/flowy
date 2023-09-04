@@ -117,7 +117,12 @@ class _TimetableScreenState extends State<TimetableScreen> {
                     ),
                   );
                 }
-                return const Text("로딩 중...");
+                return const Column(
+									children: [
+										Text("로딩중..."),
+										Text("로딩이 되지 않나요?"),
+									],
+								);
               },
             ),
           ),
