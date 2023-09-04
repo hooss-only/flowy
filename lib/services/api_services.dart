@@ -54,22 +54,24 @@ class ApiService {
     } else {
       throw Error();
     }
-	}
-	
-	static Future<WeatherModel> getWeather() async {
-		const language = 'kr';
-		const units = 'metric';
-		const city = 'daegu';
+  }
 
-		final url = Uri.parse('https://api.openweathermap.org/data/2.5/weather?q=$city&appid=${Keys.weatherKey}&lang=$language&units=$units');
+  static Future<WeatherModel> getWeather() async {
+    const language = 'kr';
+    const units = 'metric';
+    const city = 'daegu';
 
-		final response = await http.get(url);
+    final url = Uri.parse(
+        'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=${Keys.weatherKey}&lang=$language&units=$units');
 
-		if (response.statusCode == 200) {
-			final weather = jsonDecode(response.body);
+    final response = await http.get(url);
 
-			return WeatherModel.fromJson(weather);
-		} else {
-			throw Error();
-	}
+    if (response.statusCode == 200) {
+      final weather = jsonDecode(response.body);
+
+      return WeatherModel.fromJson(weather);
+    } else {
+      throw Error();
+    }
+  }
 }
