@@ -118,6 +118,7 @@ class _TimetableScreenState extends State<TimetableScreen> {
                   );
                 }
                 return const Column(
+									mainAxisAlignment: MainAxisAlignment.center,
 									children: [
 										Text("로딩중..."),
 										Text("로딩이 되지 않나요?"),
