@@ -25,12 +25,19 @@ class _WeatherWidgetState extends State<WeatherWidget> {
       builder: (context, snapshot) {
         Map<String, dynamic> weatherGradientSet = {
           'Clear': const [Color(0xFFD8BFFF), Color(0xFFA2E2FF)],
-          'Clouds': const [Color(0xFF959595), Color(0xFF6D6D6D)]
+          'Clouds': const [Color(0xFF959595), Color(0xFF6D6D6D)],
+					'Rain': const [Color(0xFF959595), Color(0xFF414D65)],
+					'Snow': const [Color(0xFF4DEDFF), Color(0xFFC2ECFF)]
         };
 
 				Map<String, IconData> weatherIconSet = {
-					'Clear': Icons.sunny,
-					'Clouds': Icons.cloud,
+					'Clear': Icons.wb_sunny_rounded,
+					'Clouds': Icons.cloud_rounded,
+					'Rain': Icons.water_drop_rounded,
+					'Snow': Icons.ac_unit_rounded,
+					'Thunderstorm': Icons.thunderstorm_rounded,
+					'Drizzle': Icons.water_drop_rounded,
+					'Tornado': Icons.tornado_rounded,
 				};
 
         if (snapshot.hasData) {
