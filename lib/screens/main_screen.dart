@@ -3,6 +3,7 @@ import 'package:flowy/screens/timetable_screen.dart';
 import 'package:flowy/services/api_services.dart';
 import 'package:flowy/services/utilites.dart';
 import 'package:flowy/widgets/card_widget.dart';
+import 'package:flowy/widgets/weather_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -189,6 +190,10 @@ class _MainScreenState extends State<MainScreen> {
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+									const WeatherWidget(),
                 ],
               ),
             )
