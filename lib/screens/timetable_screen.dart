@@ -30,12 +30,14 @@ class _TimetableScreenState extends State<TimetableScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('${widget.grade}-${widget.classname} 시간표'),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-        ),
-        body: Container(
+      appBar: AppBar(
+        title: Text('${widget.grade}-${widget.classname} 시간표'),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 33),
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
@@ -118,15 +120,17 @@ class _TimetableScreenState extends State<TimetableScreen> {
                   );
                 }
                 return const Column(
-									mainAxisAlignment: MainAxisAlignment.center,
-									children: [
-										Text("로딩중..."),
-										Text("로딩이 되지 않나요?"),
-									],
-								);
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("로딩중..."),
+                    Text("로딩이 되지 않나요?"),
+                  ],
+                );
               },
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
