@@ -89,7 +89,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                       snapshot.data!.description,
                       style: const TextStyle(
                         fontFamily: 'Pretendard',
-                        fontSize: 24,
+                        fontSize: 18,
                         color: Colors.white,
                       ),
                     ),
